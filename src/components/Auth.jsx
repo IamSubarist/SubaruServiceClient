@@ -4,7 +4,7 @@ const Auth = ({ onClose }) => {
   // const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
   const handleRegister = async () => {
     try {
@@ -55,13 +55,7 @@ const Auth = ({ onClose }) => {
   };
 
   return (
-    <div
-      className={
-        isLogin
-          ? "absolute left-0 top-0 w-full h-full bg-black/50 z-10"
-          : "hidden"
-      }
-    >
+    <div className="absolute left-0 top-0 w-full h-full bg-black/50 z-10">
       <div className="absolute right-0 w-1/4 h-full bg-white pt-8">
         <div className="flex flex-col mx-8 gap-6">
           <div className="flex items-center justify-between">
@@ -124,16 +118,22 @@ const Auth = ({ onClose }) => {
             {isLogin ? (
               <div>
                 Нет аккаунта?{" "}
-                <a className="text-blue-900" href={"/"}>
+                <button
+                  onClick={() => setIsLogin(false)}
+                  className="text-blue-900"
+                >
                   Зарегестрируйтесь!
-                </a>
+                </button>
               </div>
             ) : (
               <div>
                 Есть аккаунт?{" "}
-                <a className="text-blue-900" href={"/"}>
+                <button
+                  onClick={() => setIsLogin(true)}
+                  className="text-blue-900"
+                >
                   Войдите!
-                </a>
+                </button>
               </div>
             )}
           </div>

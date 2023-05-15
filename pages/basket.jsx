@@ -2,15 +2,14 @@ import CartProductItem from "@/src/components/CartProductItem";
 import ProductItem from "@/src/components/ProductItem";
 import React from "react";
 
-const Basket = ({ items = [] }) => {
+const Basket = () => {
   return (
     <div className="flex justify-between">
       <div className="flex flex-col w-2/3">
         <p className="mb-10 text-4xl">Корзина</p>
         <div className="flex flex-col gap-4">
-          {items.map((item) => (
-            <CartProductItem />
-          ))}
+          <CartProductItem />
+          <CartProductItem />
         </div>
       </div>
       <div className="flex flex-col w-1/3">

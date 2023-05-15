@@ -16,19 +16,18 @@ export const Slider = () => (
   >
     <SwiperSlide>
       <img
-        src="https://remzonamsk.ru/wp-content/uploads/2018/06/tire1-768x768.jpg"
+        src="https://i.pinimg.com/originals/59/22/88/5922881775ae8e6f2cfcb483ae5fe450.jpg"
         alt=""
       />
-    </SwiperSlide>
-    <SwiperSlide>
-      <img src="https://cdn1.ozone.ru/s3/multimedia-w/6240818612.jpg" alt="" />
     </SwiperSlide>
     <SwiperSlide>
       <img
-        className=" h-full"
-        src="https://lookw.ru/11/1117/1567185203-124.jpg"
+        src="https://www.pressreleasefinder.com/primages/2016/lrg/SABICPR272a_3441111.jpg"
         alt=""
       />
+    </SwiperSlide>
+    <SwiperSlide>
+      <img src="https://cdn1.ozone.ru/s3/multimedia-v/6167085247.jpg" alt="" />
     </SwiperSlide>
   </Swiper>
 );

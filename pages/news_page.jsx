@@ -1,6 +1,6 @@
 import React from "react";
 
-const news_page = () => {
+const NewsPage = () => {
   return (
     <div className="flex gap-14">
       <div className="w-2/3 mt-2 mb-2">
@@ -50,4 +50,4 @@ const news_page = () => {
   );
 };
 
-export default news_page;
+export default NewsPage;

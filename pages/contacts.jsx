@@ -19,7 +19,7 @@ const Contacts = () => {
           <div className="rounded-md bg-blue-100 px-4 py-2">
             <p className="font-bold">Наш адрес</p>
             <ul>
-              <li>ул. Пушкина, д. Колотушкина</li>
+              <li>ул. Восточная, 56</li>
               <li>Ежедневно с 8.00 до 20.00</li>
             </ul>
           </div>

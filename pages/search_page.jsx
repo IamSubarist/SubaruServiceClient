@@ -1,7 +1,7 @@
 import SearchItem from "@/src/components/SearchItem";
 import React from "react";
 
-const search_page = () => {
+const SearchPage = () => {
   return (
     <div>
       <div className="mb-10 text-4xl">
@@ -18,4 +18,4 @@ const search_page = () => {
   );
 };
 
-export default search_page;
+export default SearchPage;

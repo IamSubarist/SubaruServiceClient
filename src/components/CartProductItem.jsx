@@ -28,7 +28,7 @@ const CartProductItem = ({ title }) => {
               1211 ₽ <span className="line-through text-gray-400">1500 ₽</span>
             </p>
           </div>
-          <div className=" mt-2">
+          <div className="flex gap-4 mt-2">
             <button onClick={onClickFavorite}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

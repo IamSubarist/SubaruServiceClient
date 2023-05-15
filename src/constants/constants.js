@@ -9,10 +9,6 @@ export const HEADER_NAVBAR_MOCK = [
     name: "Новости",
     href: "/news",
   },
-  // {
-  //   name: "Акции",
-  //   href: "/stocks",
-  // },
   {
     name: "О нас",
     href: "/about",

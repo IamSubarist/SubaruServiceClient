@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetTypeCollectionQuery } from "../model";
+// import { useGetTypeCollectionQuery } from "../model";
 
 export const NavBar = ({ functionalVariable, onClick }) => {
   const [activeItem, setActiveItem] = React.useState(null);
@@ -8,8 +8,8 @@ export const NavBar = ({ functionalVariable, onClick }) => {
     setActiveItem(index);
   };
 
-  const { response } = useGetTypeCollectionQuery();
-  console.log(response);
+  // const { response } = useGetTypeCollectionQuery();
+  // console.log(response);
   return (
     <div className="flex items-center">
       {functionalVariable.map(({ href, name }, index) => (
