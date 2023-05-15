@@ -13,9 +13,6 @@ const wheel = [
 ];
 
 export const Catalog = () => {
-  const [items, setItems] = React.useState([]);
-  const [cartItems, setCartItems] = React.useState([]);
-
   return (
     <div className="container mx-auto mt-36">
       <h2 className="text-5xl text-gray-700 font-bold absolute">Каталог</h2>
@@ -32,7 +29,7 @@ export const Catalog = () => {
             <Filter />
           </div>
           <div className="grid grid-cols-4 gap-4">
-            {items.map((item) => (
+            {wheel.map((item) => (
               <ProductItem key={item.id} title={item.title} />
             ))}
           </div>
