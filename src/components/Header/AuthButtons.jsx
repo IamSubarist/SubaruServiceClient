@@ -1,30 +1,29 @@
-// import Image from "next/image";
-import React from "react";
-// import user from "../../../public/assets/user.svg";
-import Link from "next/link";
+import React, { useState } from "react";
+import userIcon from "../../../public/assets/user.svg";
+import logoutIcon from "../../../public/assets/logout.svg";
+import Image from "next/image";
 
-const AuthButtons = ({ onClickAuth }) => {
+const AuthButtons = ({ onAuthClick, onLogoutClick, isAuthenticated }) => {
+  const handleLoginClick = () => {
+    onAuthClick("login", true);
+  };
+
+  const handleLogoutClick = () => {
+    onLogoutClick();
+  };
+
   return (
-    <>
-      <div className="ml-10 flex">
-        {/* <Image className="" src={user} alt="" /> */}
+    <div className="ml-10 flex">
+      {isAuthenticated ? (
         <div className="flex gap-4">
-          <button
-            onClick={onClickAuth}
-            className="px-4 py-1 rounded-md bg-blue-900 text-white"
-          >
-            Войти
-          </button>
-
-          <button
-            onClick={onClickAuth}
-            className="px-4 py-1 border-2 border-blue-900 rounded-md"
-          >
-            Регистрация
-          </button>
+          <Image onClick={handleLogoutClick} src={logoutIcon} />
         </div>
-      </div>
-    </>
+      ) : (
+        <div className="flex gap-4">
+          <Image onClick={handleLoginClick} src={userIcon} />
+        </div>
+      )}
+    </div>
   );
 };
 

@@ -1,57 +1,32 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { login, register } from "../store/actions/authActions";
 
 const Auth = ({ onClose }) => {
-  // const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
+  const dispatch = useDispatch();
 
-  const handleRegister = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:5000/api/user/registration",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ password, email }),
-        }
-      );
+  const handleRegister = () => {
+    const userData = {
+      email: email,
+      password: password,
+      role: "user", // Или другая роль пользователя по умолчанию
+    };
 
-      const data = await response.json();
-      console.log(data.message);
-      console.log(userData);
-      // Здесь вы можете добавить код для обработки успешной регистрации, например, перенаправление на другую страницу
-    } catch (error) {
-      console.error("Ошибка:", error);
-    }
+    dispatch(register(userData));
   };
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+  const handleLogin = () => {
+    const userData = {
+      email: email,
+      password: password,
+    };
 
-      const data = await response.json();
-
-      if (response.ok) {
-        const token = data.token;
-        // Сохраните токен аутентификации в хранилище (localStorage, cookie и т. д.)
-        localStorage.setItem("authToken", token);
-
-        // Здесь вы можете добавить код для обработки успешной аутентификации, например, перенаправление на другую страницу
-      } else {
-        console.error("Ошибка аутентификации:", data.message);
-      }
-    } catch (error) {
-      console.error("Ошибка:", error);
-    }
+    dispatch(login(userData));
   };
 
   return (
@@ -84,9 +59,7 @@ const Auth = ({ onClose }) => {
           </div>
           <div className="flex flex-col border rounded-md border-blue-900 p-4">
             <div className="flex flex-col gap-2 w-full">
-              {isLogin ? (
-                <div></div>
-              ) : (
+              {!isLogin && (
                 <input
                   onChange={(e) => setUsername(e.target.value)}
                   className="outline-none border-b border-blue-900 h-10"
@@ -104,7 +77,7 @@ const Auth = ({ onClose }) => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="outline-none border-b border-blue-900 h-10"
                 placeholder="Введите пароль"
-                type="text"
+                type="password"
               />
             </div>
           </div>
@@ -122,7 +95,7 @@ const Auth = ({ onClose }) => {
                   onClick={() => setIsLogin(false)}
                   className="text-blue-900"
                 >
-                  Зарегестрируйтесь!
+                  Зарегистрируйтесь!
                 </button>
               </div>
             ) : (

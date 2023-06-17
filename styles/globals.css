@@ -99,3 +99,28 @@ a {
     color-scheme: dark;
   }
 }
+
+@layer components {
+  .shadow-box {
+    @apply w-full h-full max-w-md p-4 bg-white rounded-lg shadow-xl
+  }
+  .main-title {
+    @apply text-2xl font-bold mb-4
+  }
+  .main-btn {
+    @apply mt-6 px-6 py-2 border border-blue-900 rounded-md hover:bg-blue-900 hover:text-white ease-in-out
+  }
+  .btn-delete {
+    @apply px-2 py-1 border text-red-500 border-red-500 rounded-md
+    hover:bg-red-500 hover:text-white
+  }
+  .input {
+    @apply mb-2 px-4 py-2 border rounded-md focus:outline-none focus:border-blue-900
+  }
+  .link-focus {
+    @apply py-2 px-2 mx-4 border-b-2 border-b-blue-900
+  }
+  .link-active {
+    @apply py-2 px-2 mx-4 border-b-2 border-transparent hover:border-b-blue-900 cursor-pointer
+  }
+}

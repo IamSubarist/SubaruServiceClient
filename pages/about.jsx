@@ -3,9 +3,9 @@ import React from "react";
 const about = () => {
   return (
     <>
-      <div className="mb-10 text-4xl">Немного о нашей организации</div>
+      <div className="main-title">Немного о нашей организации</div>
       <div className="flex flex-col gap-10">
-        <div className="gap-10 flex">
+        <div className="gap-10 flex flex-col sm:flex-row">
           <p className="text-justify">
             Добро пожаловать в наш интернет-магазин автозапчастей для
             автомобильной марки Subaru! Мы - команда энтузиастов, предлагающая
@@ -32,7 +32,7 @@ const about = () => {
             alt=""
           />
         </div>
-        <div className="flex gap-10 flex-row-reverse">
+        <div className="flex gap-10 flex-col sm:flex-row-reverse">
           <p className="text-justify">
             Мы гордимся тем, что предлагаем только качественные продукты от
             ведущих производителей, которые соответствуют строгим стандартам
@@ -59,7 +59,7 @@ const about = () => {
             alt=""
           />
         </div>
-        <div className="gap-10 flex">
+        <div className="gap-10 flex flex-col sm:flex-row">
           <p className="text-justify">
             Спасибо, что выбрали наш интернет-магазин автозапчастей для
             автомобилей Subaru. Мы гордимся тем, что можем поддержать вас в

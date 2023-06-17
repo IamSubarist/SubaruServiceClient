@@ -1,18 +1,24 @@
+import Image from "next/image";
 import React from "react";
+import { API_BASE_URL } from "../constants";
 
-const SearchItem = () => {
+const SearchItem = ({ product }) => {
   return (
     <div className="w-1/4 p-4">
-      <img
-        src="https://bipbap.ru/wp-content/uploads/2021/11/421727f6e487de8597eb560ce7cb862a-1-730x548.jpg"
-        alt=""
+      <Image
+        priority // {false} | {true}
+        width={700}
+        height={700}
+        src={`${API_BASE_URL}${product.img}`}
+        alt={product.name}
       />
       <div className="mt-2">
         <p>
-          1211 р. <span className="line-through text-gray-400">1500 р.</span>
+          {product.price} р.{" "}
+          <span className="line-through text-gray-400">1500 р.</span>
         </p>
         <div className="flex">
-          <p>AutoHimDetal</p>
+          <p>{product.name}</p>
           <p className="text-gray-400">/ Подарочный набор...</p>
         </div>
         <div>

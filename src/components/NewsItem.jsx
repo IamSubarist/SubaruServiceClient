@@ -1,23 +1,34 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { API_BASE_URL } from "../constants";
 
-const NewsItem = () => {
+const NewsItem = ({ news }) => {
+  console.log(news.img);
+
   return (
-    <div className="flex flex-col w-1/3 p-4 mb-20">
-      <img
-        src="https://phonoteka.org/uploads/posts/2021-07/1625202270_10-phonoteka-org-p-shkolnie-novosti-zastavka-krasivie-zastavk-10.jpg"
-        alt=""
+    <div className="flex flex-col w-[310px] p-4 bg-white rounded-lg shadow-xl mb-8">
+      <Image
+        className="w-full h-1/3 object-cover"
+        priority // {false} | {true}
+        width={200}
+        height={200}
+        src={`${API_BASE_URL}${news.img[0]}`}
+        alt={news.title}
       />
       <div className="mt-2 mb-2">
-        <p className="text-lg">Заголовок новости</p>
-        <p className="mb-2 text-sm">Подзаголовок новости</p>
-        <p className="text-justify text-md">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-          magnam voluptatum illum repellendus animi doloremque, laboriosam
-          praesentium beatae...
+        <p className="text-lg">{news.title}</p>
+        <p className="mb-2 text-sm">{news.subtitle}</p>
+        <p className="text-justify text-sm">
+          {news.description.slice(0, 200) + "..."}
         </p>
       </div>
-      <Link href="/news_page">Подробнее...</Link>
+      <Link
+        className="px-6 py-3 text-white bg-blue-900 rounded-md hover:bg-blue-700 transition-all duration-500 ease-in-out"
+        href={`/news/${news.id}`}
+      >
+        Подробнее...
+      </Link>
     </div>
   );
 };

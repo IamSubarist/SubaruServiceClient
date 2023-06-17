@@ -1,30 +1,31 @@
 import React from "react";
+import axios from "axios";
+import Link from "next/link";
 // import { useGetTypeCollectionQuery } from "../model";
 
-export const NavBar = ({ functionalVariable, onClick }) => {
+export const NavBar = ({ onClick, functionalVariable }) => {
   const [activeItem, setActiveItem] = React.useState(null);
 
   const onSelectItem = (index) => {
     setActiveItem(index);
+    // onClick(functionalVariable[index].id);
   };
 
-  // const { response } = useGetTypeCollectionQuery();
-  // console.log(response);
   return (
     <div className="flex items-center">
-      {functionalVariable.map(({ href, name }, index) => (
-        <a
-          onClick={() => onSelectItem(index)}
+      {functionalVariable.map(({ id, name, href }, index) => (
+        <Link
           href={href}
+          onClick={() => onSelectItem(index)}
           key={index}
           className={
             activeItem === index
-              ? "py-2 px-2 mx-4 border-b-2 border-b-blue-900"
-              : "py-2 px-2 mx-4 border-b-2 border-transparent translate-all duration-500 hover:border-b-blue-900 cursor-pointer"
+              ? "link-focus"
+              : "link-active translate-all duration-500"
           }
         >
           {name}
-        </a>
+        </Link>
       ))}
     </div>
   );

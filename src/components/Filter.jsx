@@ -2,7 +2,7 @@ import React from "react";
 
 const Filter = () => {
   return (
-    <div className="mr-10 border border-blue-900 rounded-md p-5 w-64">
+    <div className="max-w-md p-4 bg-white rounded-lg shadow-xl">
       <div className="mb-4">
         <p className="text-xl mb-0.5 font-bold text-gray-800">Тип</p>
         <select

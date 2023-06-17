@@ -1,50 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
+import Image from "next/image";
+import NewsItem from "@/src/components/NewsItem";
+import { NewsSlider } from "@/src/components/Swiper/NewsSlider";
+import { API_BASE_URL, NEWS_URL } from "@/src/constants";
 
 const NewsPage = () => {
+  const router = useRouter();
+  const [news, setNews] = useState(null);
+  const [allNews, setAllNews] = useState([]);
+
+  useEffect(() => {
+    if (router.query.id) {
+      fetchNews(router.query.id);
+    }
+    fetchAllNews();
+  }, [router.query.id]);
+
+  const fetchAllNews = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}${NEWS_URL}`);
+      setAllNews(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchNews = async (id) => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}${NEWS_URL}${id}`);
+      setNews(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if (!news) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="flex gap-14">
-      <div className="w-2/3 mt-2 mb-2">
-        <div className="w-100 flex align-center border border-b-blue-900 mb-1"></div>
-        <p className="text-2xl font-bold text-center">
-          Subaru Outback и Subaru Forester – победители на премии «Автомобиль
-          года в России»
-        </p>
-        <p className="mb-1 text-lg text-center">Подзаголовок новости</p>
-        <div className="w-100 flex align-center border border-b-blue-900 mb-6"></div>
-        <div className="flex justify-center m-4">
-          <img
-            width="80%"
-            src="https://subaru.ru/uploads/content/event-body-editor/noname-a09070169115d8ab1ff2cd4686608025/autogoda_500.png"
-            alt=""
-          />
+    <div className="flex gap-10">
+      <div className="bg-white rounded-lg shadow-xl p-10 w-full h-full">
+        <h1 className="main-title">{news.title}</h1>
+        <p className="">{news.subtitle}</p>
+        <div className="shadow-box h-full w-full">
+          <NewsSlider news={news} />
         </div>
-        <p className="text-justify text-md">
-          15 сентября 2022 года в Москве были подведены итоги 22-й Ежегодной
-          национальной премии «Автомобиль года в России». Subaru Outback в
-          девятый раз стал победителем в категории «Универсалы повышенной
-          проходимости». А Subaru Forester в четвертый раз был признан лучшим в
-          категории «Легкие внедорожники». Уже 22 года подряд уникальный
-          исследовательский проект «Автомобиль года в России» помогает
-          воспроизводить полноценную картину предпочтений автолюбителей в нашей
-          стране. Ежегодная национальная премия «Автомобиль года в России» – это
-          индикатор независимого общественного мнения на автомобильном рынке. По
-          традиции выбор лучших в своих классах автомобилей проводится в формате
-          online-голосования на сайте премии. Каталог голосования включает в
-          себя все официально продаваемые автомобили на рынке с краткими
-          техническими характеристиками, ценами и другой полезной информацией. В
-          этом году в голосовании приняли участие более 950 тысяч россиян из
-          пяти тысяч населенных пунктов, которые выбирали лучшие автомобили в 25
-          номинациях. А финальные результаты 22-й премии были оглашены на
-          пресс-конференции в ТАСС, собравшей ведущих экспертов автомобильного
-          рынка. За все годы существования премии автомобили Subaru многократно
-          занимали первые места в различных номинациях. В этом году Subaru
-          Outback и Subaru Forester принесли бренду сразу две награды. В итоге
-          общее количество побед Subaru на премии «Автомобиль года в России»
-          достигло пятнадцати.
-        </p>
+        <p className="text-gray-700 text-justify mt-10">{news.description}</p>
       </div>
-      <div className="w-1/3 text-center bg-gray-500">
-        <p>Другие новости</p>
+      <div className="flex flex-col">
+        <div className="main-title">Другие новости</div>
+        {allNews.map((news) => (
+          <NewsItem key={news.id} news={news} />
+        ))}
       </div>
     </div>
   );

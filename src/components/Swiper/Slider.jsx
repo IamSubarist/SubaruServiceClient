@@ -3,16 +3,13 @@ import { Pagination, Navigation, Autoplay } from "swiper";
 
 export const Slider = () => (
   <Swiper
-    pagination={{
-      type: "fraction",
-    }}
+    pagination={true}
     autoplay={{
       delay: 2500,
       disableOnInteraction: false,
     }}
-    navigation={true}
     modules={[Pagination, Navigation, Autoplay]}
-    className="mySwiper w-1/4 rounded-lg"
+    className="mySwiper w-2/3 sm:w-1/4 rounded-lg"
   >
     <SwiperSlide>
       <img

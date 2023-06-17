@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Account = () => {
@@ -11,6 +12,9 @@ const Account = () => {
         <a className="hover:underline" href={"/"}>
           Мои заказы
         </a>
+        <Link className="hover:underline" href={"/create_review"}>
+          Оставить отзыв
+        </Link>
       </div>
     </div>
   );
