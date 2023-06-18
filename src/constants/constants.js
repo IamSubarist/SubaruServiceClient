@@ -23,7 +23,7 @@ export const HEADER_NAVBAR = [
   },
 ];
 
-export const API_BASE_URL = "http://80.78.241.172:5000/";
+export const API_BASE_URL = "https://subaru-service-161.ru/";
 
 export const CATEGORIES_URL = "api/type/";
 export const BRANDS_URL = "api/brand/";
