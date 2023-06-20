@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import SearchItem from "@/src/components/SearchItem";
 import { API_BASE_URL, DEVICES_URL } from "@/src/constants";
+import ProductItem from "@/src/components/ProductItem";
 
 const SearchPage = () => {
   const router = useRouter();
@@ -33,10 +34,10 @@ const SearchPage = () => {
 
   return (
     <div>
-      <h1>Результаты поиска для запроса: {query}</h1>
-      <div>
+      <h1 className="main-title">Результаты поиска для запроса: {query}</h1>
+      <div className="flex flex-wrap gap-6">
         {results.map((product) => (
-          <SearchItem key={product.id} product={product} />
+          <ProductItem key={product.id} product={product} />
         ))}
       </div>
     </div>

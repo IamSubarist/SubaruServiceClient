@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
 import ProductItem from "./ProductItem";
@@ -6,26 +6,85 @@ import axios from "axios";
 import Link from "next/link";
 import { CategoryBar } from "./CategoryBar";
 import BurgerMenu from "./NavBar/ui/BurgerMenu";
-import { API_BASE_URL, DEVICES_URL } from "../constants";
+import {
+  API_BASE_URL,
+  DEVICES_URL,
+  BRANDS_URL,
+  CATEGORIES_URL,
+} from "../constants";
+import Disk from "../../public/assets/Disk.png";
+import Image from "next/image";
 
 export const Catalog = () => {
-  const [products, setProducts] = React.useState([]);
-  const [authenticated, setAuthenticated] = React.useState(false);
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const [totalPages, setTotalPages] = React.useState(1);
-  const [selectedCategory, setSelectedCategory] = React.useState(null);
+  const [products, setProducts] = useState([]);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [selectedBrand, setSelectedBrand] = useState("");
+  const [brands, setBrands] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const brandsResponse = await axios.get(`${API_BASE_URL}${BRANDS_URL}`);
+        setBrands(brandsResponse.data);
+
+        const categoriesResponse = await axios.get(
+          `${API_BASE_URL}${CATEGORIES_URL}`
+        );
+        setCategories(categoriesResponse.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const filterProducts = () => {
+    const filteredData = products.filter((product) => {
+      let priceInRange = true;
+      if (minPrice !== "" && maxPrice !== "") {
+        priceInRange = product.price >= minPrice && product.price <= maxPrice;
+      } else if (minPrice !== "") {
+        priceInRange = product.price >= minPrice;
+      } else if (maxPrice !== "") {
+        priceInRange = product.price <= maxPrice;
+      }
+
+      let brandMatches = true;
+      if (selectedBrand !== "") {
+        brandMatches = product.brand === selectedBrand;
+      }
+
+      return priceInRange && brandMatches;
+    });
+
+    setFilteredProducts(filteredData);
+  };
+
+  const handlePriceFilter = (min, max) => {
+    setMinPrice(min);
+    setMaxPrice(max);
+    filterProducts();
+  };
+
+  useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}${DEVICES_URL}`, {
           params: {
             page: currentPage,
-            typeId: selectedCategory, // Добавьте выбранную категорию в параметры запроса
+            typeId: selectedCategory,
+            brandId: selectedBrand,
           },
         });
         const { data } = response;
-        // console.log(selectedCategory);
 
         if (data.rows && Array.isArray(data.rows)) {
           setProducts(data.rows);
@@ -37,53 +96,12 @@ export const Catalog = () => {
         console.error(error);
       }
     };
-    // const fetchCurrentUser = async () => {
-    //   try {
-    //     const token = localStorage.getItem("token");
-    //     console.log(token);
-    //     const response = await axios.get(
-    //       "http://localhost:5000/api/user/auth",
-    //       {
-    //         headers: {
-    //           Authorization: `Bearer ${token}`,
-    //         },
-    //       }
-    //     );
-
-    //     // Здесь вы можете обработать полученные данные о пользователе
-    //     console.log(response);
-    //     setAuthenticated(true);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-
-    // Вызов функции для получения данных о текущем пользователе
 
     fetchProducts();
-    // fetchCurrentUser();
-  }, [currentPage, selectedCategory]);
+  }, [currentPage, selectedCategory, selectedBrand]);
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    // console.log(category);
-
-    // Выполняем запрос к серверу
-    // axios
-    //   .get("http://localhost:5000/api/device", {
-    //     params: {
-    //       typeId: category.id,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     // Обрабатываем полученные данные
-    //     const { data } = response;
-    //     setProducts(data); // Обновляем список товаров с полученными данными
-    //     console.log(data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
   };
 
   const handlePageChange = (pageNumber) => {
@@ -102,16 +120,18 @@ export const Catalog = () => {
         <div className="flex bg-white rounded-lg shadow-md">
           <CategoryBar onClick={handleCategoryClick} />
         </div>
-        {/* <BurgerMenu catalogCategories={} /> */}
         <div className="flex flex-col sm:flex-row gap-10 mt-6">
           <div className="w-full sm:w-64">
-            <Filter />
+            <Filter handlePriceFilter={handlePriceFilter} brands={brands} />
+            <Image
+              className="absolute -left-full sm:-left-60"
+              src={Disk}
+              alt={Disk}
+            />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {products.map((product) => (
-              <Link key={product.id} href={`/product/${product.id}`}>
-                <ProductItem product={product} />
-              </Link>
+            {filteredProducts.map((product) => (
+              <ProductItem key={product.id} product={product} />
             ))}
           </div>
         </div>

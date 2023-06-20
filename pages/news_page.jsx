@@ -41,7 +41,7 @@ const NewsPage = () => {
   }
 
   return (
-    <div className="flex gap-10">
+    <div className="flex gap-10 flex-col sm:flex-row">
       <div className="bg-white rounded-lg shadow-xl p-10 w-full h-full">
         <h1 className="main-title">{news.title}</h1>
         <p className="">{news.subtitle}</p>

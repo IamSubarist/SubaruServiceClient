@@ -78,12 +78,9 @@ const Consultation = () => {
   const handleOptionChange = (value) => setSelectedOption(value);
 
   return (
-    <div className="">
+    <div className="shadow-box">
       <div className="main-title">Консультация / Запись на ТО</div>
-      <form
-        className="flex flex-col gap-4 w-full sm:w-1/3"
-        onSubmit={handleSubmit}
-      >
+      <form className="flex flex-col gap-4 w-full" onSubmit={handleSubmit}>
         <input
           onChange={(e) => setName(e.target.value)}
           value={name}

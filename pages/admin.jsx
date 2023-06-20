@@ -15,7 +15,7 @@ const Admin = () => {
           className="main-btn translate-all duration-500 mt-0"
           href="/admin/type"
         >
-          Добавить тип
+          Добавить категорию
         </Link>
         <Link
           className="main-btn translate-all duration-500 mt-0"

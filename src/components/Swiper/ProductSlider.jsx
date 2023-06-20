@@ -8,7 +8,6 @@ export const ProductSlider = ({ product }) => (
       delay: 2500,
       disableOnInteraction: false,
     }}
-    navigation={true}
     modules={[Pagination, Navigation, Autoplay]}
     className="mySwiper rounded-lg"
   >

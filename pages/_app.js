@@ -6,6 +6,7 @@ import "@/styles/globals.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import Head from "next/head";
 
 // Создаем Redux-стор
 // const store = createStore(rootReducer);
@@ -13,6 +14,14 @@ import "swiper/css/navigation";
 export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <Layout>
         <Component {...pageProps} />
       </Layout>

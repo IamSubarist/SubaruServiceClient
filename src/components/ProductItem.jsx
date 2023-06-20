@@ -1,15 +1,24 @@
-import Image from "next/image";
 import React from "react";
-import tire from "../../public/assets/tire.png";
 import axios from "axios";
-import { useUser } from "./UserContext";
 import Link from "next/link";
-import { API_BASE_URL, CARTS_URL } from "../constants";
+import { API_BASE_URL, CARTS_URL, BRANDS_URL } from "../constants";
+import { ProductSlider } from "./Swiper/ProductSlider";
 
 const ProductItem = ({ product }) => {
   const [isAdded, setIsAdded] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
-  const user = useUser();
+  const [brandName, setBrandName] = React.useState("");
+
+  React.useEffect(() => {
+    const fetchBrandName = async () => {
+      const brandResponse = await axios.get(
+        `${API_BASE_URL}${BRANDS_URL}/${product.brandId}`
+      );
+      const brandData = brandResponse.data;
+      setBrandName(brandData.name);
+    };
+    fetchBrandName();
+  }, []);
 
   const onClickFavorite = () => {
     setIsFavorite(!isFavorite);
@@ -32,30 +41,33 @@ const ProductItem = ({ product }) => {
   };
 
   return (
-    <div className="rounded-lg p-4 w-50 sm:w-60 max-w-md bg-white shadow-lg transition-all duration-500 ease-in-out hover:scale-110 hover:border hover:border-blue-900">
-      <Image
-        className=" object-cover"
-        width={200}
-        height={200}
-        src={`${API_BASE_URL}${product.img[0]}`}
-        alt={product.title}
-      />
-      <div>
-        <p className="font-bold text-xl mt-4 mb-1">
-          {product.name.slice(0, 30) + "..."}
-        </p>
-        <p className="mb-2">{product.description.slice(0, 30) + "..."}</p>
-      </div>
-      <div>
+    <div className="rounded-lg p-4 w-50 sm:w-60 max-w-md bg-white shadow-lg transition-all duration-500 ease-in-out hover:scale-105 hover:border hover:border-blue-900">
+      <Link href={`/product/${product.id}`}>
+        <ProductSlider product={product} />
         <div>
-          {/* <p className="uppercase text-sm text-gray-400">Стоимость:</p> */}
+          <p className="font-bold text-xl mt-4">
+            {product.name.length > 30
+              ? product.name.slice(0, 30) + "..."
+              : product.name}
+          </p>
+          <p className="font-bold text-gray-400 mb-2">{brandName}</p>
+          <p className="mb-2">
+            {product.description.length > 30
+              ? product.description.slice(0, 30) + "..."
+              : product.description}
+          </p>
+        </div>
+        <div>
           <div className="flex gap-2 mb-2">
             <div className="font-bold">{product.price} ₽</div>
             <div className=" text-gray-400 line-through">
               {product.oldPrice} ₽
             </div>
           </div>
+          <div></div>
         </div>
+      </Link>
+      <div>
         <div className="flex justify-between">
           <button onClick={onClickFavorite}>
             <svg
@@ -78,8 +90,8 @@ const ProductItem = ({ product }) => {
             onClick={addToCart}
             className={
               isAdded
-                ? "border-2 border-blue-900 outline-none rounded-md px-2 py-1"
-                : "text-white bg-gradient-to-t from-blue-900 to-blue-800 rounded-md px-2 py-1"
+                ? "px-2 sm:px-6 py-0 sm:py-2 border border-blue-900 rounded-md hover:bg-blue-900 hover:text-white ease-in-out"
+                : "px-2 sm:px-6 py-0 sm:py-2 border border-blue-900 rounded-md hover:bg-blue-900 hover:text-white ease-in-out transition-all duration-500"
             }
             disabled={isAdded}
           >

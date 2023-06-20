@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Company = () => {
   return (
-    <div className="w-96">
+    <div className="relative w-96">
       <Link href={"/"}>
         <Image width={200} heigth={200} src={logo} alt="" />
       </Link>

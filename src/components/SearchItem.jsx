@@ -6,20 +6,24 @@ const SearchItem = ({ product }) => {
   return (
     <div className="w-1/4 p-4">
       <Image
-        priority // {false} | {true}
-        width={700}
-        height={700}
-        src={`${API_BASE_URL}${product.img}`}
-        alt={product.name}
+        className=" object-cover"
+        width={200}
+        height={200}
+        src={`${API_BASE_URL}${product.img[0]}`}
+        alt={product.title}
       />
       <div className="mt-2">
-        <p>
-          {product.price} р.{" "}
-          <span className="line-through text-gray-400">1500 р.</span>
-        </p>
-        <div className="flex">
-          <p>{product.name}</p>
-          <p className="text-gray-400">/ Подарочный набор...</p>
+        <div className="flex gap-2 mb-2">
+          <div className="font-bold">{product.price} ₽</div>
+          <div className=" text-gray-400 line-through">
+            {product.oldPrice} ₽
+          </div>
+        </div>
+        <div>
+          <p className="font-bold text-xl mt-4 mb-1">
+            {product.name.slice(0, 30) + "..."}
+          </p>
+          <p className="mb-2">{product.description.slice(0, 30) + "..."}</p>
         </div>
         <div>
           <button className="mt-4 bg-blue-900 text-white rounded-md px-4 py-2 mb-10">

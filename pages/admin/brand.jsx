@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "@/src/components/Modal";
-import { API_BASE_URL, BRANDS_URL } from "@/src/constants";
+import { API_BASE_URL, BRANDS_URL, CATEGORIES_URL } from "@/src/constants";
 
 const Brand = () => {
   const [name, setName] = React.useState("");
   const [brands, setBrands] = useState([]);
+  const [typeId, setTypeId] = useState("");
+  const [categories, setCategories] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [isTransitioned, setIsTransitioned] = useState(false);
   const [remainingTime, setRemainingTime] = useState(3);
@@ -23,6 +25,21 @@ const Brand = () => {
       fetchBrands();
     };
   }, [showModal, remainingTime]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const categoriesResponse = await axios.get(
+          `${API_BASE_URL}${CATEGORIES_URL}`
+        );
+        setCategories(categoriesResponse.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   const fetchBrands = async () => {
     try {
@@ -55,7 +72,7 @@ const Brand = () => {
     setErrors(errors);
     if (Object.keys(errors).length === 0) {
       try {
-        await axios.post(`${API_BASE_URL}${BRANDS_URL}`, { name });
+        await axios.post(`${API_BASE_URL}${BRANDS_URL}`, { name, typeId });
         // Категория успешно добавлена
         // Можете выполнить какие-то дополнительные действия, например очистить форму
         setName("");
@@ -76,10 +93,22 @@ const Brand = () => {
   };
 
   return (
-    <div className="flex gap-10">
-      <div className="shadow-box">
+    <div className="flex flex-col md:flex-row md:gap-10">
+      <div className="shadow-box mb-6 md:mb-0">
         <h1 className="main-title">Добавить бренд</h1>
         <form className="flex flex-col" onSubmit={handleSubmit}>
+          <select
+            value={typeId}
+            onChange={(e) => setTypeId(e.target.value)}
+            className={`border ${errors.typeId && "border-red-500"} input`}
+          >
+            <option value="">Выберите категорию</option>
+            {categories.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
+          </select>
           <input
             placeholder="Название бренда"
             type="text"

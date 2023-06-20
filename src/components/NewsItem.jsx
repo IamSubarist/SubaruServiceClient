@@ -24,7 +24,7 @@ const NewsItem = ({ news }) => {
         </p>
       </div>
       <Link
-        className="px-6 py-3 text-white bg-blue-900 rounded-md hover:bg-blue-700 transition-all duration-500 ease-in-out"
+        className="main-btn transition-all duration-500"
         href={`/news/${news.id}`}
       >
         Подробнее...

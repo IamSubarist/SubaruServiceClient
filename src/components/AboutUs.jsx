@@ -3,10 +3,15 @@ import React from "react";
 import photo from "../../public/assets/photo.png";
 import About from "@/pages/about";
 import Link from "next/link";
+import Key from "../../public/assets/Key.png";
 
 export const AboutUs = () => {
   return (
     <div className="container mx-auto mt-28">
+      <Image
+        className="absolute right-full sm:right-0 sm:bottom-50"
+        src={Key}
+      />
       <h2 className="text-3xl sm:text-5xl text-gray-700 font-bold mb-4 absolute -z-10">
         О компании
       </h2>
@@ -14,20 +19,29 @@ export const AboutUs = () => {
         О компании
       </h2>
       <div className="flex flex-col sm:flex-row">
-        <div className="w-full sm:w-1/2 mb-4 sm:mb-0 sm:pr-4 flex flex-col justify-between">
-          <p className="text-sm sm:text-base">
+        <div className="w-full sm:w-1/2 mb-4 sm:mb-0 sm:pr-4 flex flex-col justify-between text-justify">
+          <p className="text-sm font-bold sm:text-base">
             Subaru Service: продажа запчастей и аксессуаров высокого качества
           </p>
           <p className="text-sm sm:text-base">
             Мы начали свою деятельность недавно, но уже успели заслужить хорошую
             репутацию среди покупателей. Количество положительных отзывов в
-            адрес нашей компании от благодарных клиентов растет с каждым днем. В
-            нашем интернет-магазине вы можете купить необходимые запчасти и
-            аксессуары для своего автомобиля по выгодным ценам.
+            адрес нашей компании от благодарных клиентов растет с каждым днем.
           </p>
-          <p className="text-sm sm:text-base">Большой ассортимент</p>
+          <p className="text-sm font-bold sm:text-base">
+            Качество и надежность
+          </p>
           <p className="text-sm sm:text-base">
-            В каталоге нашего магазина вы найдете автозапчасти для Subaru.
+            Мы гарантируем, что все запчасти и аксессуары, предлагаемые в нашем
+            магазине, соответствуют высоким стандартам качества и надежности. Мы
+            тщательно выбираем поставщиков, чтобы убедиться, что каждая деталь,
+            которую мы продаем, будет долговечной и надежной.
+          </p>
+          <p className="text-sm font-bold sm:text-base">Удобство покупки</p>
+          <p className="text-sm sm:text-base">
+            Мы сделали процесс покупки запчастей и аксессуаров максимально
+            удобным для наших клиентов. Мы также предлагаем различные способы
+            оплаты и доставки, чтобы удовлетворить ваши потребности.
           </p>
           <Link
             href="/about"

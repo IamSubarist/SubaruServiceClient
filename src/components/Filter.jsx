@@ -1,59 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Filter = () => {
+const Filter = ({ handlePriceFilter }) => {
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
+  const handleMinPriceChange = (e) => {
+    setMinPrice(e.target.value);
+  };
+
+  const handleMaxPriceChange = (e) => {
+    setMaxPrice(e.target.value);
+  };
+
+  const handlePriceSubmit = (e) => {
+    e.preventDefault();
+    handlePriceFilter(minPrice, maxPrice);
+  };
+
   return (
     <div className="max-w-md p-4 bg-white rounded-lg shadow-xl">
-      <div className="mb-4">
-        <p className="text-xl mb-0.5 font-bold text-gray-800">Тип</p>
-        <select
-          className="border border-blue-900 rounded-md bg-transparent outline-none w-full p-2"
-          name=""
-          id=""
-        >
-          <option value="">Летние</option>
-          <option value="">Зимние</option>
-          <option value="">Всесезонные</option>
-        </select>
+      <div className="main-title">Фильтр</div>
+      <div className="">
+        <p className="text-xl font-bold text-gray-800 mb-2">Цена</p>
+        <form onSubmit={handlePriceSubmit}>
+          <div className="flex justify-between gap-4">
+            <input
+              type="number"
+              className="input w-1/2 mb-0"
+              placeholder="Мин"
+              value={minPrice}
+              onChange={handleMinPriceChange}
+            />
+            <input
+              type="number"
+              className="input w-1/2 mb-0"
+              placeholder="Макс"
+              value={maxPrice}
+              onChange={handleMaxPriceChange}
+            />
+          </div>
+          <button
+            type="submit"
+            className="main-btn mt-2 w-full transition-all duration-500"
+          >
+            Применить
+          </button>
+        </form>
       </div>
-      <div className="mb-4">
-        <p className="text-xl mb-0.5 font-bold text-gray-800">Производитель</p>
-        <select
-          className="border border-blue-900 rounded-md bg-transparent outline-none w-full p-2"
-          name=""
-          id=""
-        >
-          <option value="">Michelin</option>
-          <option value="">Yokohama</option>
-          <option value="">Toyo Tires</option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <p className="text-xl mb-0.5 font-bold text-gray-800">Размер</p>
-        <select
-          className="border border-blue-900 rounded-md bg-transparent outline-none w-full p-2"
-          name=""
-          id=""
-        >
-          <option value="">XXX/XX</option>
-          <option value="">XXX/XX</option>
-          <option value="">XXX/XX</option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <p className="text-xl mb-0.5 font-bold text-gray-800">Диаметр</p>
-        <select
-          className="border border-blue-900 rounded-md bg-transparent outline-none w-full p-2"
-          name=""
-          id=""
-        >
-          <option value="">R16</option>
-          <option value="">R17</option>
-          <option value="">R18</option>
-        </select>
-      </div>
-      <button className="text-center mt-6 py-3 w-full bg-gradient-to-t from-blue-900 to-blue-800 rounded-md text-white hover:bg-white">
-        Подобрать
-      </button>
     </div>
   );
 };

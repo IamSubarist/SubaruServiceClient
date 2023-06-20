@@ -16,14 +16,14 @@ const Contacts = () => {
           ></iframe>
         </div>
         <div className="flex flex-col justify-between gap-6">
-          <div className="rounded-md bg-blue-100 px-4 py-2">
+          <div className="rounded-md border border-blue-900 px-4 py-2">
             <p className="font-bold">Наш адрес</p>
             <ul>
               <li>ул. Восточная, 56</li>
               <li>Ежедневно с 8.00 до 20.00</li>
             </ul>
           </div>
-          <div className="rounded-md bg-blue-100 px-4 py-2">
+          <div className="rounded-md border border-blue-900 px-4 py-2">
             <p className="font-bold">Позвоните нам</p>
             <ul>
               <li>8 800 555-35-35</li>
@@ -35,26 +35,26 @@ const Contacts = () => {
         </div>
         <div className="flex flex-col gap-2 sm:gap-6">
           <a
-            className="px-4 py-2 rounded-md border-2 border-blue-100 translate-all duration-500 hover:bg-blue-100"
+            className="px-4 py-2 rounded-md border border-blue-900 translate-all duration-500 hover:bg-blue-900 hover:text-white"
             href="/"
           >
             Телеграм
           </a>
           <a
-            className="px-4 py-2 rounded-md border-2 border-blue-100 translate-all duration-500 hover:bg-blue-100"
+            className="px-4 py-2 rounded-md border border-blue-900 translate-all duration-500 hover:bg-blue-900 hover:text-white"
             href="/"
           >
             Инстаграм
           </a>
           <a
-            className="px-4 py-2 rounded-md border-2 border-blue-100 translate-all duration-500 hover:bg-blue-100"
+            className="px-4 py-2 rounded-md border border-blue-900 translate-all duration-500 hover:bg-blue-900 hover:text-white"
             href="/"
           >
             Вконтакте
           </a>
           <a
-            className="px-4 py-2 rounded-md translate-all duration-500 hover:bg-white hover:text-black hover:outline hover:outline-blue-100 bg-blue-900 text-white"
-            href="/"
+            className="main-btn transition-all duration-500"
+            href="/consultation"
           >
             Записаться на ТО
           </a>

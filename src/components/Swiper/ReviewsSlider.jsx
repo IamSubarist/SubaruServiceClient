@@ -16,10 +16,7 @@ export const ReviewsSlider = ({ reviews }) => (
     className="mySwiper"
   >
     {reviews.map((review) => (
-      <SwiperSlide
-        className="max-w-md p-4 mb-10 bg-white rounded-lg shadow-xl"
-        key={review.id}
-      >
+      <SwiperSlide className="shadow-box mb-10" key={review.id}>
         <div className="text-center">
           <p className="text-xl font-bold mb-4">{review.name}</p>
           <p className="text-justify">{review.description}</p>

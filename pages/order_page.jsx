@@ -9,6 +9,8 @@ import {
   MAILS_URL,
   ORDERS_URL,
 } from "@/src/constants";
+import Head from "next/head";
+import YandexMetrica from "@/src/components/yandexMetrika";
 
 const OrderPage = () => {
   const [quantity, setQuantity] = useState(1);
@@ -91,6 +93,9 @@ const OrderPage = () => {
   console.log(contactPhone);
   return (
     <div class="shadow-box p-4">
+      <Head>
+        <YandexMetrica />
+      </Head>
       <h2 class="main-title">Оформление заказа</h2>
 
       <div>

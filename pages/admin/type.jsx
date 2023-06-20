@@ -73,8 +73,8 @@ const Type = () => {
   };
 
   return (
-    <div className="flex gap-10">
-      <div className="w-full h-full shadow-box">
+    <div className="flex flex-col md:flex-row md:gap-10">
+      <div className="w-full md:w-auto h-full shadow-box mb-6 md:mb-0">
         <h1 className="main-title">Добавить категорию</h1>
         <form className="flex flex-col" onSubmit={handleSubmit}>
           <input

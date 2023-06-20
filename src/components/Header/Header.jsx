@@ -57,7 +57,7 @@ const Header = () => {
         <Link className="hidden sm:block" href="/">
           <Image width={200} height={200} src={logo} alt="" />
         </Link>
-        <div className="flex fixed justify-between bg-white h-16 w-full items-center top-0 right-0 pl-8 pr-8 sm:hidden">
+        <div className="flex fixed justify-between bg-white h-16 w-full items-center top-0 right-0 pl-8 pr-8 sm:hidden z-10">
           <BurgerMenu functionalVariable={HEADER_NAVBAR} />
           <Link href="/">
             <Image width={200} height={200} src={logo} alt="" />
