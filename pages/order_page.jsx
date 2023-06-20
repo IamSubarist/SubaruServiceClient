@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import ProductItem from "@/src/components/ProductItem";
 import CartProductItem from "@/src/components/CartProductItem";
 import {
   API_BASE_URL,
   DEVICES_URL,
-  MAILS_URL,
   ORDERMAILS_URL,
   ORDERS_URL,
 } from "@/src/constants";
@@ -45,7 +43,7 @@ const OrderPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${API_BASE_URL}${ORDERS_URL}`, {
+      await axios.post(`${API_BASE_URL}${ORDERS_URL}`, {
         quantity,
         paymentMethod,
         deliveryMethod,
@@ -56,15 +54,13 @@ const OrderPage = () => {
         deviceId: product.id,
       });
 
-      console.log(response.data);
-
       const payload = {
         quantity: quantity,
         paymentMethod: paymentMethod,
         deliveryMethod: deliveryMethod,
-        address: deliveryAddress,
-        name: contactName,
-        phone: contactPhone,
+        deliveryAddress: deliveryAddress,
+        contactName: contactName,
+        contactPhone: contactPhone,
         userId: 3,
         deviceId: product.id,
       };
@@ -79,7 +75,6 @@ const OrderPage = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          setShowModal(!showModal);
         })
         .catch((error) => {
           console.error(error);
@@ -88,7 +83,6 @@ const OrderPage = () => {
       console.error(error);
     }
   };
-  console.log(contactPhone);
   return (
     <div class="shadow-box p-4">
       <Head>

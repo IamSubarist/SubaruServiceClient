@@ -2,7 +2,7 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <>
+    <div>
       <h2 className="font-bold text-xl mb-4">Контакты</h2>
       <div className="flex flex-col gap-2">
         <div className="flex items-center">
@@ -64,7 +64,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

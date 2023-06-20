@@ -32,6 +32,6 @@ export const NEWS_URL = "api/news/";
 export const ORDERS_URL = "api/order/";
 export const REVIEWS_URL = "api/review/";
 export const MAILS_URL = "api/mail/";
-export const ORDERMAILS_URL = "api/ordermail/";
+export const ORDERMAILS_URL = "api/orderMail/";
 export const CARTS_URL = "api/cart/";
 export const USERS_URL = "api/user/";

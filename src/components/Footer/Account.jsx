@@ -3,7 +3,7 @@ import React from "react";
 
 const Account = () => {
   return (
-    <>
+    <div>
       <h2 className="font-bold text-xl mb-4">Аккаунт</h2>
       <div className="flex flex-col">
         <a className="hover:underline" href={"/"}>
@@ -16,7 +16,7 @@ const Account = () => {
           Оставить отзыв
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 
