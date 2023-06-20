@@ -16,7 +16,6 @@ const NewsItem = ({ news }) => {
       />
       <div className="mt-2 mb-2">
         <p className="text-lg">{news.title}</p>
-        <p className="mb-2 text-sm">{news.subtitle}</p>
         <p className="text-justify text-sm">
           {news.description.slice(0, 200) + "..."}
         </p>
