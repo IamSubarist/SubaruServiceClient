@@ -4,13 +4,11 @@ import React from "react";
 import { API_BASE_URL } from "../constants";
 
 const NewsItem = ({ news }) => {
-  console.log(news.img);
-
   return (
     <div className="flex flex-col w-[310px] p-4 bg-white rounded-lg shadow-xl mb-8">
       <Image
         className="w-full h-1/3 object-cover"
-        priority // {false} | {true}
+        priority
         width={200}
         height={200}
         src={`${API_BASE_URL}${news.img[0]}`}

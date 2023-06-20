@@ -45,8 +45,7 @@ const Type = () => {
       try {
         await axios.post(`${API_BASE_URL}${CATEGORIES_URL}`, { name });
         setName("");
-        fetchCategories(); // Обновляем список категорий после добавления новой
-        // Другие действия после успешного добавления
+        fetchCategories();
         setTimeout(() => {
           setIsTransitioned(true);
         }, 100);
@@ -65,8 +64,7 @@ const Type = () => {
       await axios.delete(`${API_BASE_URL}${CATEGORIES_URL}`, {
         data: { id: categoryId },
       });
-      fetchCategories(); // Обновляем список категорий после удаления
-      // Другие действия после успешного удаления
+      fetchCategories();
     } catch (error) {
       console.log(error);
     }

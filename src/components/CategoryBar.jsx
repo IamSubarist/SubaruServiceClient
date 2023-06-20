@@ -1,11 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { API_BASE_URL, CATEGORIES_URL } from "../constants";
-// import BurgerMenu from "./NavBar/ui/BurgerMenu";
-// import { CATALOG_NAVBAR_MOCK } from "../constants";
-// import { useGetTypeCollectionQuery } from "../model";
 
-export const CategoryBar = ({ onClick, functionalVariable }) => {
+export const CategoryBar = ({ onClick }) => {
   const [activeItem, setActiveItem] = React.useState(null);
   const [categories, setCategories] = React.useState([]);
 
@@ -27,9 +24,6 @@ export const CategoryBar = ({ onClick, functionalVariable }) => {
     setActiveItem(index);
     onClick(categories[index].id);
   };
-
-  // const { response } = useGetTypeCollectionQuery();
-  // console.log(response);
   return (
     <div>
       <div className="flex flex-wrap">
@@ -47,9 +41,6 @@ export const CategoryBar = ({ onClick, functionalVariable }) => {
           </a>
         ))}
       </div>
-      {/* <div>
-        <BurgerMenu functionalVariable={CATALOG_NAVBAR_MOCK} />
-      </div> */}
     </div>
   );
 };

@@ -32,7 +32,7 @@ const ProductPage = () => {
   }
 
   return (
-    <div className="">
+    <>
       <div className="flex justify-between flex-col gap-6 sm:flex-row">
         <div className="shadow-box h-full w-full">
           <div className="main-title">{product.name}</div>
@@ -81,7 +81,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

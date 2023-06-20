@@ -1,27 +1,28 @@
+import Link from "next/link";
 import React from "react";
 
 const Main = () => {
   return (
-    <div className="">
+    <>
       <h2 className="font-bold text-xl mb-4">Основное</h2>
       <div className="flex flex-col">
-        <a className="hover:underline" href={"/"}>
+        <Link className="hover:underline" href={"/"}>
           Главная
-        </a>
-        <a className="hover:underline" href={"/"}>
+        </Link>
+        <Link className="hover:underline" href={"/news"}>
           Новости
-        </a>
-        <a className="hover:underline" href={"/"}>
+        </Link>
+        <Link className="hover:underline" href={"/about"}>
           О нас
-        </a>
-        <a className="hover:underline" href={"/"}>
+        </Link>
+        <Link className="hover:underline" href={"/contacts"}>
           Контакты
-        </a>
-        <a className="hover:underline" href={"/"}>
+        </Link>
+        <Link className="hover:underline" href={"/consultation"}>
           Консультация/ТО
-        </a>
+        </Link>
       </div>
-    </div>
+    </>
   );
 };
 

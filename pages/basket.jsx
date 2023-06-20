@@ -19,7 +19,7 @@ const Basket = () => {
     try {
       const response = await axios.get(`${API_BASE_URL}${CARTS_URL}`);
       setCartItems(response.data);
-      dispatch(loadCart()); // Добавьте вызов экшена loadCart
+      dispatch(loadCart());
     } catch (error) {
       console.error(error);
     }
@@ -57,7 +57,7 @@ const Basket = () => {
           <div className="flex flex-col gap-2">
             <div className="flex justify-between">
               <p>Итого:</p>
-              <p>24999 $</p>
+              <p>0 ₽</p>
             </div>
             <button className="main-btn transition-all duration-500">
               Оплатить

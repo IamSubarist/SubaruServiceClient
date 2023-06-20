@@ -2,8 +2,6 @@ import React from "react";
 import { ReviewsSlider } from "@/src/components/Swiper/ReviewsSlider";
 import axios from "axios";
 import { API_BASE_URL, REVIEWS_URL } from "../constants";
-import Disk from "../../public/assets/Disk.png";
-import Image from "next/image";
 import { ReviewsSliderMobile } from "./Swiper/ReviewsSliderMobile";
 
 const Reviews = () => {

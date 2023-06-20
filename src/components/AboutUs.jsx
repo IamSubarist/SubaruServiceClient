@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import photo from "../../public/assets/photo.png";
-import About from "@/pages/about";
 import Link from "next/link";
 import Key from "../../public/assets/Key.png";
 

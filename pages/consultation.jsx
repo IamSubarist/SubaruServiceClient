@@ -24,7 +24,6 @@ const Consultation = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // setIsTransitioned(false);
 
     const errors = {};
     if (name.trim() === "") {
@@ -56,16 +55,13 @@ const Consultation = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          // Обработка успешной отправки письма
           setShowModal(!showModal);
         })
         .catch((error) => {
           console.error(error);
-          // Обработка ошибки
         });
       setShowModal(true);
       setTimeout(() => {
-        // setShowModal(true);
         setIsTransitioned(true);
       }, 100);
 

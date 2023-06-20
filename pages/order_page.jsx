@@ -7,6 +7,7 @@ import {
   API_BASE_URL,
   DEVICES_URL,
   MAILS_URL,
+  ORDERMAILS_URL,
   ORDERS_URL,
 } from "@/src/constants";
 import Head from "next/head";
@@ -68,7 +69,7 @@ const OrderPage = () => {
         deviceId: product.id,
       };
 
-      fetch(`${API_BASE_URL}${MAILS_URL}send-email`, {
+      fetch(`${API_BASE_URL}${ORDERMAILS_URL}send-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,16 +79,13 @@ const OrderPage = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          // Обработка успешной отправки письма
           setShowModal(!showModal);
         })
         .catch((error) => {
           console.error(error);
-          // Обработка ошибки
         });
     } catch (error) {
       console.error(error);
-      // Добавьте обработку ошибок при оформлении заказа, например, показ сообщения об ошибке или перенаправление на страницу с ошибкой
     }
   };
   console.log(contactPhone);

@@ -7,10 +7,6 @@ const Search = () => {
 
   const handleSearch = async () => {
     try {
-      // Выполните ваш запрос поиска здесь
-      // Установите результаты в состояние setResults
-
-      // Перенаправление на страницу SearchPage с передачей параметра запроса
       router.push({
         pathname: "/search_page",
         query: { query },
@@ -22,7 +18,7 @@ const Search = () => {
   };
 
   return (
-    <div className="mt-5 w-full border-2 border-blue-900 rounded-lg sm:w-1/3">
+    <div className="mt-16 sm:mt-5 w-full border-2 border-blue-900 rounded-lg sm:w-1/3">
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}

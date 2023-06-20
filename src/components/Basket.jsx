@@ -1,6 +1,5 @@
-import Image from "next/image";
 import React from "react";
-// import BasketProduct from "./BasketProduct";
+// import CartProductItem from "./CartProductItem";
 
 const Basket = ({ onClose }) => {
   return (
@@ -29,10 +28,7 @@ const Basket = ({ onClose }) => {
               </svg>
             </button>
           </div>
-          <div className="flex flex-col gap-4">
-            <BasketProduct />
-            <BasketProduct />
-          </div>
+          <div className="flex flex-col gap-4">{/* <CartProductItem /> */}</div>
           <div className="">
             <div>
               <p>Итого</p>

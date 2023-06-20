@@ -55,8 +55,7 @@ const Brand = () => {
       await axios.delete(`${API_BASE_URL}${BRANDS_URL}`, {
         data: { id: brandId },
       });
-      fetchBrands(); // Обновляем список категорий после удаления
-      // Другие действия после успешного удаления
+      fetchBrands();
     } catch (error) {
       console.log(error);
     }
@@ -73,8 +72,6 @@ const Brand = () => {
     if (Object.keys(errors).length === 0) {
       try {
         await axios.post(`${API_BASE_URL}${BRANDS_URL}`, { name, typeId });
-        // Категория успешно добавлена
-        // Можете выполнить какие-то дополнительные действия, например очистить форму
         setName("");
         fetchBrands();
         setTimeout(() => {
@@ -86,7 +83,6 @@ const Brand = () => {
         }, 3000);
         setShowModal(true);
       } catch (error) {
-        // Обработка ошибки при добавлении категории
         console.log(error);
       }
     }

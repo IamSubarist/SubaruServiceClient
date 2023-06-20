@@ -1,14 +1,11 @@
 import React from "react";
-import axios from "axios";
 import Link from "next/link";
-// import { useGetTypeCollectionQuery } from "../model";
 
-export const NavBar = ({ onClick, functionalVariable }) => {
+export const NavBar = ({ functionalVariable }) => {
   const [activeItem, setActiveItem] = React.useState(null);
 
   const onSelectItem = (index) => {
     setActiveItem(index);
-    // onClick(functionalVariable[index].id);
   };
 
   return (

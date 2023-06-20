@@ -40,8 +40,6 @@ const createReview = () => {
           name,
           description,
         });
-        // Категория успешно добавлена
-        // Можете выполнить какие-то дополнительные действия, например очистить форму
         setName("");
         setDescription("");
         setTimeout(() => {
@@ -53,7 +51,6 @@ const createReview = () => {
         }, 3000);
         setShowModal(true);
       } catch (error) {
-        // Обработка ошибки при добавлении категории
         console.log(error);
       }
     }

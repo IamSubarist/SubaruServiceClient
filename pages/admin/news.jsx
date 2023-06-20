@@ -65,7 +65,6 @@ const News = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-        // Очистить форму после успешного добавления новости
         setTitle("");
         setSubtitle("");
         setDescription("");

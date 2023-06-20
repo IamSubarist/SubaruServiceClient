@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "next/link";
-// import AuthButtons from "../../Header/AuthButtons";
 
 const BurgerMenu = ({ functionalVariable }) => {
   const [activeItem, setActiveItem] = useState(null);
@@ -9,7 +8,6 @@ const BurgerMenu = ({ functionalVariable }) => {
   const onSelectItem = (index) => {
     setActiveItem(index);
     setIsOpen(false);
-    // onClick(functionalVariable[index].id);
   };
 
   const toggleMenu = () => {
@@ -37,7 +35,7 @@ const BurgerMenu = ({ functionalVariable }) => {
       {isOpen && (
         <div className="fixed top-14 bottom-0 right-0 left-0 bg-white">
           <div className="flex flex-col m-10 h-full ">
-            {functionalVariable.map(({ id, name, href }, index) => (
+            {functionalVariable.map(({ name, href }, index) => (
               <Link
                 href={href}
                 onClick={() => onSelectItem(index)}
@@ -51,7 +49,6 @@ const BurgerMenu = ({ functionalVariable }) => {
                 {name}
               </Link>
             ))}
-            {/* <AuthButtons /> */}
           </div>
         </div>
       )}

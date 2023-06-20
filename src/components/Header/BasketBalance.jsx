@@ -7,7 +7,7 @@ const BasketBalance = () => {
   return (
     <Link href={"/basket"} className="flex items-center">
       <Image className="" src={basket} alt="" />
-      <p className="ml-2">49660 руб.</p>
+      <p className="ml-2">0 ₽</p>
     </Link>
   );
 };

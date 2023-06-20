@@ -2,7 +2,7 @@ import React from "react";
 
 const Contacts = () => {
   return (
-    <div>
+    <>
       <div className="main-title">Контакты</div>
       <div className="flex flex-col justify-between gap-6 sm:flex-row">
         <div className="w-full sm:w-3/5">
@@ -60,7 +60,7 @@ const Contacts = () => {
           </a>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

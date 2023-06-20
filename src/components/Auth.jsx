@@ -14,7 +14,7 @@ const Auth = ({ onClose }) => {
     const userData = {
       email: email,
       password: password,
-      role: "user", // Или другая роль пользователя по умолчанию
+      role: "user",
     };
 
     dispatch(register(userData));

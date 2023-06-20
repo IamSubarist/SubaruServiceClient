@@ -25,7 +25,6 @@ const Header = () => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
       if (token) {
-        // Выполняем автоматическую авторизацию при наличии токена
         dispatch(autoLogin());
       }
     }
@@ -33,7 +32,6 @@ const Header = () => {
 
   const handleSearch = async () => {
     try {
-      //...
       router.push({
         pathname: "/search_page",
         query: { query },

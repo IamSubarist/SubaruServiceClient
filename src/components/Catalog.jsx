@@ -3,25 +3,18 @@ import Filter from "./Filter";
 import Pagination from "./Pagination";
 import ProductItem from "./ProductItem";
 import axios from "axios";
-import Link from "next/link";
 import { CategoryBar } from "./CategoryBar";
-import BurgerMenu from "./NavBar/ui/BurgerMenu";
 import {
   API_BASE_URL,
   DEVICES_URL,
   BRANDS_URL,
   CATEGORIES_URL,
 } from "../constants";
-import Disk from "../../public/assets/Disk.png";
-import Image from "next/image";
 
 export const Catalog = () => {
-  const [products, setProducts] = useState([]);
-  const [authenticated, setAuthenticated] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [categories, setCategories] = useState([]);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
@@ -46,34 +39,6 @@ export const Catalog = () => {
     fetchData();
   }, []);
 
-  const filterProducts = () => {
-    const filteredData = products.filter((product) => {
-      let priceInRange = true;
-      if (minPrice !== "" && maxPrice !== "") {
-        priceInRange = product.price >= minPrice && product.price <= maxPrice;
-      } else if (minPrice !== "") {
-        priceInRange = product.price >= minPrice;
-      } else if (maxPrice !== "") {
-        priceInRange = product.price <= maxPrice;
-      }
-
-      let brandMatches = true;
-      if (selectedBrand !== "") {
-        brandMatches = product.brand === selectedBrand;
-      }
-
-      return priceInRange && brandMatches;
-    });
-
-    setFilteredProducts(filteredData);
-  };
-
-  const handlePriceFilter = (min, max) => {
-    setMinPrice(min);
-    setMaxPrice(max);
-    filterProducts();
-  };
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -87,7 +52,7 @@ export const Catalog = () => {
         const { data } = response;
 
         if (data.rows && Array.isArray(data.rows)) {
-          setProducts(data.rows);
+          setFilteredProducts(data.rows);
           setTotalPages(data.totalPages);
         } else {
           console.error("Invalid data format:", data);
@@ -100,6 +65,29 @@ export const Catalog = () => {
     fetchProducts();
   }, [currentPage, selectedCategory, selectedBrand]);
 
+  const filterProducts = () => {
+    const filteredData = filteredProducts.filter((product) => {
+      let priceInRange = true;
+      if (minPrice !== "" && maxPrice !== "") {
+        priceInRange = product.price >= minPrice && product.price <= maxPrice;
+      } else if (minPrice !== "") {
+        priceInRange = product.price >= minPrice;
+      } else if (maxPrice !== "") {
+        priceInRange = product.price <= maxPrice;
+      }
+
+      return priceInRange;
+    });
+
+    setFilteredProducts(filteredData);
+  };
+
+  const handlePriceFilter = (min, max) => {
+    setMinPrice(min);
+    setMaxPrice(max);
+    filterProducts();
+  };
+
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
@@ -109,7 +97,7 @@ export const Catalog = () => {
   };
 
   return (
-    <div className="container mx-auto mt-28">
+    <div id="catalog" className="container mx-auto mt-28">
       <h2 className="text-3xl sm:text-5xl text-gray-700 font-bold mb-4 absolute -z-10">
         Каталог
       </h2>
@@ -123,11 +111,11 @@ export const Catalog = () => {
         <div className="flex flex-col sm:flex-row gap-10 mt-6">
           <div className="w-full sm:w-64">
             <Filter handlePriceFilter={handlePriceFilter} brands={brands} />
-            <Image
+            {/* <Image
               className="absolute -left-full sm:-left-60"
               src={Disk}
               alt={Disk}
-            />
+            /> */}
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {filteredProducts.map((product) => (
