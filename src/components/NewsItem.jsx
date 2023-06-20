@@ -5,7 +5,7 @@ import { API_BASE_URL } from "../constants";
 
 const NewsItem = ({ news }) => {
   return (
-    <div className="flex flex-col w-[310px] p-4 bg-white rounded-lg shadow-xl mb-8">
+    <div className="flex flex-col justify-between w-[310px] p-4 h-[530px] bg-white rounded-lg shadow-xl mb-8">
       <Image
         className="w-full h-1/3 object-cover"
         priority
@@ -15,8 +15,8 @@ const NewsItem = ({ news }) => {
         alt={news.title}
       />
       <div className="mt-2 mb-2">
-        <p className="text-lg">{news.title}</p>
-        <p className="text-justify text-sm">
+        <p className="text-lg font-bold">{news.title}</p>
+        <p className="text-justify text-sm mt-4">
           {news.description.slice(0, 200) + "..."}
         </p>
       </div>
