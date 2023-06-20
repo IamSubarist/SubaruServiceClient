@@ -1,4 +1,8 @@
 import React from "react";
+import about1 from "../public/assets/about1.jpeg";
+import about2 from "../public/assets/about2.png";
+import about3 from "../public/assets/about3.jpg";
+import Image from "next/image";
 
 const about = () => {
   return (
@@ -26,11 +30,7 @@ const about = () => {
             выбрать правильные запчасти и решить любые вопросы, связанные с
             обслуживанием вашего автомобиля.
           </p>
-          <img
-            width={600}
-            src="https://alfasvet.pro/d/net-bt-brd142265-562878575-1200x800.jpg"
-            alt=""
-          />
+          <Image width={600} src={about1} alt="" />
         </div>
         <div className="flex gap-10 flex-col sm:flex-row-reverse">
           <p className="text-justify">
@@ -53,11 +53,7 @@ const about = () => {
             заказов, чтобы вы могли быстро получить необходимые запчасти и
             вернуться на дорогу.
           </p>
-          <img
-            width={600}
-            src="https://alfasvet.pro/d/net-bt-brd142265-562878575-1200x800.jpg"
-            alt=""
-          />
+          <Image width={600} src={about2} alt="" />
         </div>
         <div className="gap-10 flex flex-col sm:flex-row">
           <p className="text-justify">
@@ -67,13 +63,9 @@ const about = () => {
             вопросы или нужна помощь, пожалуйста, свяжитесь с нами. Наша
             дружелюбная команда всегда готова помочь вам с радостью и
             профессионализмом. Добро пожаловать в мир качественных запчастей
-            Subaru! С уважением, Команда [Название вашего интернет-магазина]
+            Subaru! С уважением, Команда Subaru Service!
           </p>
-          <img
-            width={600}
-            src="https://alfasvet.pro/d/net-bt-brd142265-562878575-1200x800.jpg"
-            alt=""
-          />
+          <Image width={600} src={about3} alt="" />
         </div>
       </div>
     </>
