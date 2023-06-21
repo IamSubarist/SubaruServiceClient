@@ -4,7 +4,7 @@ import Link from "next/link";
 import { API_BASE_URL, CARTS_URL, BRANDS_URL } from "../constants";
 import { ProductSlider } from "./Swiper/ProductSlider";
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, isOrder = false }) => {
   const [isAdded, setIsAdded] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
   const [brandName, setBrandName] = React.useState("");
@@ -46,13 +46,13 @@ const ProductItem = ({ product }) => {
         <ProductSlider product={product} />
         <div>
           <p className="font-bold text-xl mt-4">
-            {product.name.length > 30
+            {product.name?.length > 30
               ? product.name.slice(0, 30) + "..."
               : product.name}
           </p>
           <p className="font-bold text-gray-400 mb-2">{brandName}</p>
           <p className="mb-2">
-            {product.description.length > 30
+            {product.description?.length > 30
               ? product.description.slice(0, 30) + "..."
               : product.description}
           </p>
@@ -67,38 +67,40 @@ const ProductItem = ({ product }) => {
           <div></div>
         </div>
       </Link>
-      <div>
-        <div className="flex justify-between">
-          <button onClick={onClickFavorite}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill={isFavorite ? "pink" : "none"}
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-              color={isFavorite ? "pink" : "gray"}
+      {isOrder && (
+        <div>
+          <div className="flex justify-between">
+            <button onClick={onClickFavorite}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill={isFavorite ? "pink" : "none"}
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+                color={isFavorite ? "pink" : "gray"}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                />
+              </svg>
+            </button>
+            <button
+              onClick={addToCart}
+              className={
+                isAdded
+                  ? "px-2 sm:px-6 py-0 sm:py-2 border border-blue-900 rounded-md hover:bg-blue-900 hover:text-white ease-in-out"
+                  : "px-2 sm:px-6 py-0 sm:py-2 border border-blue-900 rounded-md hover:bg-blue-900 hover:text-white ease-in-out transition-all duration-500"
+              }
+              disabled={isAdded}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={addToCart}
-            className={
-              isAdded
-                ? "px-2 sm:px-6 py-0 sm:py-2 border border-blue-900 rounded-md hover:bg-blue-900 hover:text-white ease-in-out"
-                : "px-2 sm:px-6 py-0 sm:py-2 border border-blue-900 rounded-md hover:bg-blue-900 hover:text-white ease-in-out transition-all duration-500"
-            }
-            disabled={isAdded}
-          >
-            {isAdded ? "В корзине" : "В корзину"}
-          </button>
+              {isAdded ? "В корзине" : "В корзину"}
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

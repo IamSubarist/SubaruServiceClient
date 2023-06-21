@@ -22,7 +22,7 @@ const News = () => {
   return (
     <>
       <div className="main-title">Новостной блог</div>
-      <div className="flex flex-wrap gap-5">
+      <div className="flex flex-wrap gap-5 justify-center ">
         {news.map((item) => (
           <NewsItem key={item.id} news={item} />
         ))}

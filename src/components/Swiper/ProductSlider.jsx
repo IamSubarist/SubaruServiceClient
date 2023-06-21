@@ -11,7 +11,7 @@ export const ProductSlider = ({ product }) => (
     modules={[Pagination, Navigation, Autoplay]}
     className="mySwiper rounded-lg"
   >
-    {product.img.map((img) => (
+    {product.img?.map((img) => (
       <SwiperSlide key={img}>
         <img
           className="w-full h-full"

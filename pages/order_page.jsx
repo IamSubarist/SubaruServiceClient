@@ -10,6 +10,7 @@ import {
 } from "@/src/constants";
 import Head from "next/head";
 import YandexMetrica from "@/src/components/yandexMetrika";
+import ProductItem from "@/src/components/ProductItem";
 
 const OrderPage = () => {
   const [quantity, setQuantity] = useState(1);
@@ -83,17 +84,17 @@ const OrderPage = () => {
       console.error(error);
     }
   };
+
+  const isOrder = true;
+  console.log(product);
+
   return (
-    <div class="shadow-box p-4">
+    <div class="flex flex-col shadow-box p-4 items-center">
       <Head>
         <YandexMetrica />
       </Head>
       <h2 class="main-title">Оформление заказа</h2>
-
-      <div>
-        <CartProductItem class="mt-4" product={product} />
-      </div>
-
+      <ProductItem className="mt-4" product={product} order={isOrder} />
       <h3 class="font-bold mt-4">Количество</h3>
       <input
         class="input"
@@ -103,48 +104,52 @@ const OrderPage = () => {
       />
 
       <h3 class="font-bold mt-4">Способ оплаты</h3>
-      <label class="flex items-center mt-2">
-        <input
-          class="mr-2"
-          type="radio"
-          value="cash"
-          checked={paymentMethod === "Наличными"}
-          onChange={() => setPaymentMethod("Наличными")}
-        />
-        Оплата наличными
-      </label>
-      <label class="flex items-center mt-2">
-        <input
-          class="mr-2"
-          type="radio"
-          value="card"
-          checked={paymentMethod === "Картой"}
-          onChange={() => setPaymentMethod("Картой")}
-        />
-        Оплата картой
-      </label>
+      <div>
+        <label class="flex items-center mt-2">
+          <input
+            class="mr-2"
+            type="radio"
+            value="cash"
+            checked={paymentMethod === "Наличными"}
+            onChange={() => setPaymentMethod("Наличными")}
+          />
+          Оплата наличными
+        </label>
+        <label class="flex items-center mt-2">
+          <input
+            class="mr-2"
+            type="radio"
+            value="card"
+            checked={paymentMethod === "Картой"}
+            onChange={() => setPaymentMethod("Картой")}
+          />
+          Оплата картой
+        </label>
+      </div>
 
       <h3 class="font-bold mt-4">Способ доставки</h3>
-      <label class="flex items-center mt-2">
-        <input
-          class="mr-2"
-          type="radio"
-          value="pickup"
-          checked={deliveryMethod === "Заберу сам"}
-          onChange={() => setDeliveryMethod("Заберу сам")}
-        />
-        Заберу сам
-      </label>
-      <label class="flex items-center mt-2">
-        <input
-          class="mr-2"
-          type="radio"
-          value="courier"
-          checked={deliveryMethod === "Курьером"}
-          onChange={() => setDeliveryMethod("Курьером")}
-        />
-        Доставка курьером
-      </label>
+      <div>
+        <label class="flex items-center mt-2">
+          <input
+            class="mr-2"
+            type="radio"
+            value="pickup"
+            checked={deliveryMethod === "Заберу сам"}
+            onChange={() => setDeliveryMethod("Заберу сам")}
+          />
+          Заберу сам
+        </label>
+        <label class="flex items-center mt-2">
+          <input
+            class="mr-2"
+            type="radio"
+            value="courier"
+            checked={deliveryMethod === "Курьером"}
+            onChange={() => setDeliveryMethod("Курьером")}
+          />
+          Доставка курьером
+        </label>
+      </div>
 
       {deliveryMethod === "Курьером" && (
         <div class="mt-4">
