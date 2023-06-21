@@ -45,8 +45,8 @@ const ProductPage = () => {
             return (
               <div className="mb-2">
                 <div className="flex justify-between gap-6 shadow-box">
-                  <p className="w-full text-justify">{i.title}</p>
-                  <p className="w-full text-justify">{i.description}</p>
+                  <p className="w-full font-bold text-justify">{i.title}</p>
+                  <p className="w-full">{i.description}</p>
                 </div>
               </div>
             );
