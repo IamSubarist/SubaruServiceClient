@@ -15,6 +15,7 @@ export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Head>
+        <title>Subaru Service | Интернет-магазин автотоваров</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
