@@ -183,7 +183,7 @@ const Device = () => {
   return (
     <div className="flex flex-col md:flex-row md:gap-10">
       <div className="w-full md:w-auto shadow-box mb-6 md:mb-0">
-        <h1 className="main-title">Добавить девайс</h1>
+        <h1 className="main-title">Добавить товар</h1>
         <div className="flex flex-col">
           <input
             type="text"
